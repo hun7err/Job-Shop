@@ -1,7 +1,7 @@
 Introduction
 ========
 The job-shop problem (abbreviated JSP) is an NP-hard problem in combinatorial optimisation.
-In JSP we consider m machines on a production line with n defined jobs; each job consists of different tasks for any of the machines and each of them has its own duration t[i]. The goal is to find the shortest scheduling in which none of the jobs' tasks collides with another on all of the m machines.
+In JSP we consider m machines on a production line with n defined jobs; each job consists of different tasks for any of the machines and each of them has its own duration t[i]. The goal is to find the shortest scheduling in which none of the jobs' tasks collide on all of the m machines.
 
 The NP-hardness can be proved using travelling salesman problem (TSP) transforming JSP into it (knowing TSP is NP-hard too, of course): the salesman becomes a machine from JSP and cities become jobs.
 
