@@ -1,8 +1,8 @@
 TARGET=job-shop
-CC=gcc
+CC=g++
 
 CFLAGS=-c -Wall -g
-LINKER=gcc -o
+LINKER=g++ -o
 LFLAGS=
 LDLIBS=
 
@@ -11,16 +11,18 @@ INCLDIR=include
 OBJDIR=obj
 BINDIR=bin
 
-SOURCES := $(wildcard $(SRCDIR)/*.c)
+SOURCES := $(wildcard $(SRCDIR)/*.cpp)
 INCLUDES := $(wildcard $(INCLDIR)/*.h)
-OBJECTS := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+OBJECTS := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 rm=rm -f
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
+	@echo "Linkowanie bibliotek z $<"
 	@$(LINKER) $@ $(LFLAGS) $(OBJECTS) $(LDLIBS)
 	@echo "Biblioteki zlinkowane"
 
-$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
+	@echo "Kompilacja $<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "Skompilowano $<"
 
