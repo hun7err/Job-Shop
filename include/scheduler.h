@@ -12,8 +12,8 @@ class Scheduler {
 		short int schedulingDuration;	// scheduling duration
 	public:
 		// + (input)
-		void loadFromOrlib(std::string fileName);	// load from orlib format
-		void loadFromTaillard(std::string fileName);	// load from Taillard format
+		bool loadFromOrlib(std::string fileName);	// load from orlib format
+		bool loadFromTaillard(std::string fileName);	// load from Taillard format
 		void setMachineCount(short int mCount);		// set machine count
 		void setJobCount(short int jCount);		// set job count
 		void addJob(Job* job);
