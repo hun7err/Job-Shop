@@ -18,6 +18,7 @@ class Scheduler {
 		void setJobCount(short int jCount);		// set job count
 		void addJob(Job* job);
 		// - (output)
+		Job* getJob(short int jobId);
 		short int getJobCount();		// return job count
 		short int getMachineCount();		// return machine count
 		short int getSchedulingDuration();	// return the scheduling duration

@@ -21,6 +21,14 @@ int main(int argc, char* argv[]) {
 			switch(fmt) {
 				case 0:
 					scheduler->loadFromOrlib(name);
+					cout << "\t[ ]  jobCount: " << scheduler->getJobCount() << ", machineCount: " << scheduler->getMachineCount() << endl;
+					for(int i = 0; i < scheduler->getJobCount(); i++) {
+						cout << "\t[" << i << "]: ";
+						for(int j = 0; j < scheduler->getJob(i)->getTaskCount(); j++) {
+							cout << scheduler->getJob(i)->getTask(j)->getMachineId() << "," << scheduler->getJob(i)->getTask(j)->getDuration() << " ";
+						}
+						cout << endl;
+					}
 				break;
 				case 1:
 					scheduler->loadFromTaillard(name);

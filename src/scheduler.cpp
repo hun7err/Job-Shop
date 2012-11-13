@@ -1,5 +1,7 @@
 #include "../include/scheduler.h"
+#include <sstream>
 #include <fstream>
+//#include <iostream> // temporary, debugging purposes only [!]
 
 Scheduler::Scheduler(){
 	this->machineCount = 0;
@@ -27,10 +29,57 @@ Scheduler::~Scheduler() {
 
 	there are job_count lines like that built of machine_count*2 numbers because each task needs a number of a machine it belongs to and the task duration
 */
-void Scheduler::loadFromOrlib(std::string filename) {
+void Scheduler::loadFromOrlib(std::string filename) {	// optimise - I have no idea if it can be done  but still it isn't the best way to do it, probably
 	std::ifstream in;
 	in.open(filename.c_str(), std::ifstream::in);
 	if(in.is_open()) {
+		std::string line;
+		std::getline(in, line);
+		std::stringstream ss;
+		size_t p = line.find(' ');
+		ss << line.substr(0, p);
+		ss >> jobCount;
+		ss.clear();
+		ss << line.substr(p);
+		ss >> machineCount;
+		ss.clear();
+
+		int jid		= 0, // job id
+			temp	= 0,
+			i		= 0; // 
+		while(std::getline(in, line)) {
+			i = 0;
+			Task* t;
+			Job* j = new Job(jid);
+			while(!line.empty()) {
+				p = line.find(' ');
+				if(p != std::string::npos)
+					ss << line.substr(0, p);
+				else
+					ss << line.substr(0);
+				ss >> temp;
+				if(i % 2 == 0) {
+					t = new Task();
+					t->setJobId(jid);
+					t->setMachineId(temp);
+				} else {
+					t->setDuration(temp);
+					j->addTask(t);
+					//std::cout << "task jid: " << t->getJobId() << ", machine: " << t->getMachineId() << ", duration: " << t->getDuration() << std::endl;
+					//delete t;
+				}
+				//std::cout << "line: " << line << ", line.size() = " << line.size() << std::endl;
+				if(p != std::string::npos)
+					line.assign(line.substr(p+1));
+				else
+					line.clear();
+				ss.clear();
+				i++;
+			}
+			this->addJob(j);
+			jid++;
+			//std::cout << line << std::endl;
+		}
 		/* while(!eof) {
 			getline()
 			jobCount, machineCount
@@ -69,4 +118,8 @@ short int Scheduler::getMachineCount() {
 
 short int Scheduler::getSchedulingDuration() {
 	return this->schedulingDuration;
+}
+
+Job* Scheduler::getJob(short int jobId) {
+	return this->Jobs[jobId];
 }

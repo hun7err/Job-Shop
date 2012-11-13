@@ -19,6 +19,7 @@ class Job {
 		short int getJobId();
 		short int getStartTime();
 		short int getJobDuration();
+		short int getTaskCount();
 	// constructors and destructors
 	Job(short int id);
 	~Job();

@@ -7,6 +7,7 @@ Job::Job(short int id) {
 }
 
 Job::~Job() {
+	for(unsigned int i = 0; i < Tasks.size(); i++) delete Tasks[i];
 	this->Tasks.clear();
 }
 
@@ -36,4 +37,8 @@ short int Job::getStartTime() {
 
 short int Job::getJobDuration() {
 	return this->duration;
+}
+
+short int Job::getTaskCount() {
+	return this->Tasks.size();
 }
