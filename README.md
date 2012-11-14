@@ -23,11 +23,7 @@ the easy Windows way:
 the hard Windows way:
 
 <code>g++ src/job.cpp -o job.o
-
 g++ src/scheduler.cpp -o scheduler.o
-
 g++ src.cpp/task.cpp -o task.o
-
 g++ src/main.cpp -o main.o
-
 g++ -o bin/job-shop job.o scheduler.o task.o main.o</code>
