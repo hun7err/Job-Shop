@@ -17,14 +17,13 @@ OBJECTS := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 rm=rm -f
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
-	@echo "Linkowanie bibliotek z $<"
+	@echo "LD $(LINKER) $@ $(LFLAGS) $(OBJECTS) $(LDLIBS)"
 	@$(LINKER) $@ $(LFLAGS) $(OBJECTS) $(LDLIBS)
-	@echo "Biblioteki zlinkowane"
+	@echo "LD Linking successful!"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	@echo "Kompilacja $<"
+	@echo "CC $(CC) $< -o $@"
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Skompilowano $<"
 
 .PHONEY: clean
 clean:
