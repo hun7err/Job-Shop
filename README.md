@@ -14,16 +14,16 @@ Compilation
 ========
 The easy Linux way:
 
-make
+<code>make</code>
 
 the easy Windows way:
 
-g++ src/job.cpp src/scheduler.cpp src/task.cpp src/main.cpp -o job-shop
+<code>g++ src/job.cpp src/scheduler.cpp src/task.cpp src/main.cpp -o job-shop</code>
 
 the hard Windows way:
 
-g++ src/job.cpp -o job.o
+<code>g++ src/job.cpp -o job.o
 g++ src/scheduler.cpp -o scheduler.o
 g++ src.cpp/task.cpp -o task.o
 g++ src/main.cpp -o main.o
-g++ -o bin/job-shop job.o scheduler.o task.o main.o
+g++ -o bin/job-shop job.o scheduler.o task.o main.o</code>
