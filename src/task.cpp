@@ -16,6 +16,10 @@ short int Task::getDuration() {
 	return this->duration;
 }
 
+short int Task::getStartTime() {
+	return this->startTime;
+}
+
 short int Task::getJobId() {
 	return this->jobId;
 }

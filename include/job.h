@@ -7,12 +7,12 @@ class Job {
 	private:
 		std::vector<Task*> Tasks;
 		short int id;
-		short int startTime;
+		short int remainingTime;
 		short int duration;
 	public:
 		// + (input)
 		void addTask(Task* task);
-		void setStartTime(short int t);
+		void setRemainingTime();
 		void setDuration(short int dur);
 		// - (output)
 		Task* getTask(short int taskId);

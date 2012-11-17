@@ -3,7 +3,7 @@
 Job::Job(short int id) {
 	this->id = id;
 	this->duration = 0;
-	this->startTime = 0;
+	this->remainingTime = 0;
 }
 
 Job::~Job() {
@@ -15,8 +15,12 @@ void Job::addTask(Task* task) {
 	this->Tasks.push_back(task);
 }
 
-void Job::setStartTime(short int t) {
-	this->startTime = t;
+void Job::setRemainingTime() {
+	if(! (this->Tasks.empty()) ) {
+		for (unsigned short int i = 0; i < this->Tasks.size(); i++) {
+			this->remainingTime += this->Tasks[i]->getDuration();
+		}
+	}
 }
 
 void Job::setDuration(short int dur) {
@@ -29,10 +33,6 @@ Task* Job::getTask(short int taskId) {
 
 short int Job::getJobId() {
 	return this->id;
-}
-
-short int Job::getStartTime() {
-	return this->startTime;
 }
 
 short int Job::getJobDuration() {

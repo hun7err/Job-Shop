@@ -63,6 +63,7 @@ bool Scheduler::loadFromOrlib(std::string filename) {	// optimise - I have no id
 				i++;
 			}
 			ss.clear();
+			j->setRemainingTime();
 			this->addJob(j);
 			jid++;
 		}
@@ -114,6 +115,7 @@ bool Scheduler::loadFromTaillard(std::string filename) {
 				}
 				tid++;
 			}
+			j->setRemainingTime();
 			this->addJob(j);
 			ss.clear();
 			jid++;
