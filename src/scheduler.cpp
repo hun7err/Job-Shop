@@ -126,6 +126,44 @@ bool Scheduler::loadFromTaillard(std::string filename) {
 	} else return false;
 }
 
+bool Scheduler::solveWithHeuristic(std::string fileName, short int jCount) {
+	std::ofstream out;
+	out.open(fileName.c_str());
+	if(out.is_open()) {
+		//std::vector< std::vector<short int> > result;
+		const short int mCount = machineCount;
+		std::list<Task*> MachineUsage [mCount];
+		/*for(int i = 0; i < jCount; i++) { // for every job
+			for (int j = 0; j <  getJob(i)->getTaskCount(); j++) { // and every task of them
+				// processing
+			}
+		}*/
+		/*while(true) {
+			//short int jid = 0, tid = 0;
+
+			// sprawdz, czy pierwsze taski innych kontenerow maja takie samo id maszyny - jesli nie, przydziel maszyne. Jesli tak, rozwiaz konflikt poprzez wyszukanie wsrod nich tasku ktory nalezy do jobu o najkrotszym czasie pozostalym do zakonczenia [ getRemainingTime() ]. Informacje dodatkowe do pomyslu sa ponizej (156. linia ATM).
+
+			if(!(Jobs[0]->empty()))
+				Task* t = Jobs[0]->getTask(0);
+			for(int i = 0; i < jCount; i++) {
+				for(int j = 0; j < jCount, j != i; j++) {
+				}
+				//if(Jobs[i]->getRemainingTime() < Jobs[0]->getRemainingTime())
+				//Task* cur_t = Jobs[i]->getTask(0);
+				
+			}
+		}*/
+
+		/*
+			nowy pomysl:
+
+			zadania trzymac normalnie w wektorach, ale w kazdym przebiegu petli zdejmowac je z przodu, analizowac i - jesli pozostaja do wykonania - wrzucac je na przod kontenera zwiekszajac startTime o czas trwania poprzedniego zadania. Zadanie zdjete z przodu wektora wrzucac na koniec wektora rozwiazan po odpowiednim zaktualizowaniu czasu startu
+		*/
+
+		// rozwiazanie i zapis do pliku
+	} else return false;
+}
+
 void Scheduler::setMachineCount(short int mCount) {
 	this->machineCount = mCount;
 }

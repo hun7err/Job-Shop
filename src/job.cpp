@@ -31,6 +31,10 @@ Task* Job::getTask(short int taskId) {
 	return this->Tasks[taskId];
 }
 
+void Job::popFirstTask() {
+	this->Tasks.pop_front();
+}
+
 short int Job::getJobId() {
 	return this->id;
 }
@@ -41,4 +45,8 @@ short int Job::getJobDuration() {
 
 short int Job::getTaskCount() {
 	return this->Tasks.size();
+}
+
+short int Job::getRemainingTime() {
+	return this->remainingTime;
 }

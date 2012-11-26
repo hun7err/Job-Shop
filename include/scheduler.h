@@ -22,6 +22,7 @@ class Scheduler {
 		short int getJobCount();		// return job count
 		short int getMachineCount();		// return machine count
 		short int getSchedulingDuration();	// return the scheduling duration
+		bool solveWithHeuristic(std::string fileName, short int jCount);
 	Scheduler();				// default constructor
 	Scheduler(int mCount, int jCount);	// set machine and job count while starting
 	~Scheduler();				// clean up
