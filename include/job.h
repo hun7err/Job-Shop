@@ -12,12 +12,11 @@ class Job {
 	public:
 		// + (input)
 		void addTask(Task* task);
-		//void addTaskFront(Task* task);
 		void setRemainingTime();
 		void setDuration(short int dur);
+		void setRemainingTime(short int t);
 		// - (output)
 		Task* getTask(short int taskId);
-		void popFirstTask();
 		short int getJobId();
 		short int getStartTime();
 		short int getJobDuration();

@@ -23,6 +23,10 @@ void Job::setRemainingTime() {
 	}
 }
 
+void Job::setRemainingTime(short int t) {
+	this->remainingTime = t;
+}
+
 void Job::setDuration(short int dur) {
 	this->duration = dur;
 }
@@ -31,9 +35,9 @@ Task* Job::getTask(short int taskId) {
 	return this->Tasks[taskId];
 }
 
-void Job::popFirstTask() {
+/*void Job::popFirstTask() {
 	this->Tasks.pop_front();
-}
+}*/
 
 short int Job::getJobId() {
 	return this->id;

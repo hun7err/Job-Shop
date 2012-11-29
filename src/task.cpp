@@ -20,6 +20,10 @@ short int Task::getStartTime() {
 	return this->startTime;
 }
 
+void Task::setStartTime(short int t) {
+	this->startTime = t;
+}
+
 short int Task::getJobId() {
 	return this->jobId;
 }

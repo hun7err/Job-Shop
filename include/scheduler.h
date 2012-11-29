@@ -8,7 +8,7 @@ class Scheduler {
 	private:
 		short int machineCount;		// how many machines are there?
 		short int jobCount;		// how many jobs do we have?
-		std::vector<Job*> Jobs;		// job list
+		static std::vector<Job*> Jobs;		// job list
 		short int schedulingDuration;	// scheduling duration
 	public:
 		// + (input)
@@ -23,6 +23,7 @@ class Scheduler {
 		short int getMachineCount();		// return machine count
 		short int getSchedulingDuration();	// return the scheduling duration
 		bool solveWithHeuristic(std::string fileName, short int jCount);
+		static bool task_compare(Task* t1, Task* t2);
 	Scheduler();				// default constructor
 	Scheduler(int mCount, int jCount);	// set machine and job count while starting
 	~Scheduler();				// clean up

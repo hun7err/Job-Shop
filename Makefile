@@ -4,7 +4,7 @@ CC=g++
 CFLAGS=-c -Wall -g
 LINKER=g++ -o
 LFLAGS=
-LDLIBS=
+LDLIBS=-lrt
 
 SRCDIR=src
 INCLDIR=include

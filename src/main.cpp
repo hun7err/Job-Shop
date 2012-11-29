@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
+#include <ctime>
 #include "../include/scheduler.h"
 using namespace std;
 
@@ -16,7 +18,7 @@ int main(int argc, char* argv[]) {
 			printProgramInfo(argv);
 			return -1;	
 		} else {
-			cout << "[+] Everything ok so far, loading " << name << endl;
+			//cout << "[+] Everything ok so far, loading " << name << endl;
 			Scheduler* scheduler = new Scheduler();
 			switch(fmt) {
 				case 0:
@@ -34,17 +36,33 @@ int main(int argc, char* argv[]) {
 					scheduler->loadFromTaillard(name);
 				break;
 			}
-			cout << "\t[ ]  jobCount: " << scheduler->getJobCount() << ", machineCount: " << scheduler->getMachineCount() << endl;
+			/*cout << "\t[ ]  jobCount: " << scheduler->getJobCount() << ", machineCount: " << scheduler->getMachineCount() << endl;
 			for(int i = 0; i < scheduler->getJobCount(); i++) {
 				cout << "\t[" << i << "]: ";
 				for(int j = 0; j < scheduler->getJob(i)->getTaskCount(); j++) {
 					cout << scheduler->getJob(i)->getTask(j)->getMachineId() << "," << scheduler->getJob(i)->getTask(j)->getDuration() << " ";
 				}
 				cout << endl;
-			}
-			// here will be the solution... someday.
+			}*/
+			short int jobCount = (argc == 3) ? scheduler->getJobCount() : atoi(argv[3]);
+			timespec t1, t2;
+			//cout << "[ ] Solving..." << endl;
+			clock_gettime(CLOCK_REALTIME, &t1);
+			scheduler->solveWithHeuristic(string(name + "_out"), jobCount);
+			clock_gettime(CLOCK_REALTIME, &t2);
+			double total_time = (double)((t2.tv_sec - t1.tv_sec) + 1.e-9 * (t2.tv_nsec - t1.tv_nsec));
+			//cout << "[+] Solved! Total time: ";
+			cout << total_time << endl;
+			/*for(int i = 0; i < jobCount; i++) {
+				cout << "\t[" << i << "]: ";
+				for(int j = 0; j < scheduler->getJob(i)->getTaskCount(); j++) {
+					cout << scheduler->getJob(i)->getTask(j)->getMachineId() << "," << scheduler->getJob(i)->getTask(j)->getDuration() << " -> (s:" << scheduler->getJob(i)->getTask(j)->getStartTime() <<",e:" << scheduler->getJob(i)->getTask(j)->getStartTime() + scheduler->getJob(i)->getTask(j)->getDuration() << ") ";
+				}
+				cout << endl;
+			}*/
+
 			delete scheduler;
-			cout << "[+] Everything done, cleanup too. Quitting..." << endl;
+			//cout << "[+] Everything done, cleanup too. Quitting..." << endl;
 		}
 	}
 	return 0;

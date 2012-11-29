@@ -12,6 +12,7 @@ class Task {
 		void setMachineId(short int mid);
 		void setJobId(short int jid);
 		void setDuration(short int dur);
+		void setStartTime(short int t);
 		// - (output)
 		short int getMachineId();
 		short int getDuration();
