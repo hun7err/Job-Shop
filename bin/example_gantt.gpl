@@ -1,0 +1,32 @@
+set xrange [0.000000:5.000000]
+set yrange [0.400000:5.600000]
+set autoscale x
+set xlabel "Uszeregowanie instancji testowej algorytmem heurystycznym"
+set ylabel ""
+set title ""
+set ytics ("J0" 5, "J1" 3, "J2" 4, "J3" 1, "J4" 2)
+unset key
+set grid xtics
+set palette model RGB defined ( 0 1.0 0.8 0.8, 1 1.0 0.8 1.0, 2 0.8 0.8 1.0, 3 0.8 1.0 1.0, 4 0.8 1.0 0.8, 5 1.0 0.8 0.8, 6 1.0 0.8 1.0, 7 0.8 0.8 1.0, 8 0.8 1.0 1.0, 9 0.8 1.0 0.8)
+unset colorbox
+set object 1 rectangle from 0.000000, 4.6 to 1.000000, 5.4 fillcolor palette frac 0.40 fillstyle solid 0.8
+set object 2 rectangle from 1.000000, 3.6 to 2.000000, 4.4 fillcolor palette frac 0.30 fillstyle solid 0.8
+set object 3 rectangle from 2.000000, 2.6 to 3.000000, 3.4 fillcolor palette frac 0.20 fillstyle solid 0.8
+set object 4 rectangle from 3.000000, 1.6 to 4.000000, 2.4 fillcolor palette frac 0.10 fillstyle solid 0.8
+set object 5 rectangle from 4.000000, 0.6 to 5.000000, 1.4 fillcolor palette frac 0.50 fillstyle solid 0.8
+set object 6 rectangle from 0.000000, 0.6 to 1.000000, 1.4 fillcolor palette frac 0.00 fillstyle solid 0.8
+set object 7 rectangle from 1.000000, 4.6 to 2.000000, 5.4 fillcolor palette frac 0.90 fillstyle solid 0.8
+set object 8 rectangle from 2.000000, 3.6 to 3.000000, 4.4 fillcolor palette frac 0.80 fillstyle solid 0.8
+set object 9 rectangle from 3.000000, 2.6 to 4.000000, 3.4 fillcolor palette frac 0.70 fillstyle solid 0.8
+set object 10 rectangle from 4.000000, 1.6 to 5.000000, 2.4 fillcolor palette frac 0.60 fillstyle solid 0.8
+
+plot -1 with lines linecolor palette frac 0.40  linewidth 6, \
+	-1 with lines linecolor palette frac 0.30  linewidth 6, \
+	-1 with lines linecolor palette frac 0.20  linewidth 6, \
+	-1 with lines linecolor palette frac 0.10  linewidth 6, \
+	-1 with lines linecolor palette frac 0.00  linewidth 6, \
+	-1 with lines linecolor palette frac 0.90  linewidth 6, \
+        -1 with lines linecolor palette frac 0.80  linewidth 6, \
+        -1 with lines linecolor palette frac 0.70  linewidth 6, \
+        -1 with lines linecolor palette frac 0.60  linewidth 6, \
+        -1 with lines linecolor palette frac 0.50  linewidth 6
