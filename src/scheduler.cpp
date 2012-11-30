@@ -112,8 +112,6 @@ bool Scheduler::loadFromTaillard(std::string filename) {
 			ss << line;
 			while(ss >> temp) {
 				if(times) {
-					//std::cout << "line: " << line << std::endl;
-					//std::cout << "duration: " << temp << std::endl;
 					t = new Task();
 					t->setJobId(jid);
 					t->setDuration(temp);
@@ -141,40 +139,27 @@ bool Scheduler::solveWithHeuristic(std::string fileName, short int jCount) {
 		const short int taskCount = machineCount;
 		std::vector< std::list<Task*> > MachineUsage;
 		short int StopTimes [taskCount];
-		//std::cout << "MachineUsage OK" << std::endl;
 		for(int i = 0; i < taskCount; i++) {
-			//std::cout << "Created list l, pushing it to MachineUsage" << std::endl;
 			std::list<Task*> l;
 			MachineUsage.push_back(l);
-			//std::cout << "StopTimes[" << i << "] = 0" << std::endl;
 			StopTimes[i] = 0;
 		}
-		//std::cout << "Everything prepared, MachineUsage.size() = " << MachineUsage.size() << std::endl;
 		int max_scheduling_time = 0;
 		for(int t = 0; t < taskCount; t++) {
-			//std::cout << "Task " << t << std::endl;
 			for(int i = 0; i < machineCount; i++) MachineUsage[i].clear();
 
 			for (int j = 0; j < jCount; j++) {
 				Task* cur_task = getJob(j)->getTask(t);
-				//std::cout << "Task " << t << " of job " << j << " goes to machine " << cur_task->getMachineId() << std::endl;
 				MachineUsage[cur_task->getMachineId()].push_back(cur_task);
-				//std::cout << "Task pushed at MachineUsage" << std::endl;
 			}
-
-			//for(int cur_machine = 0; cur_machine < machineCount; cur_machine++) MachineUsage[cur_machine].sort(task_compare);
-			// posortuj MachineUsage[i], i = 0,1, ... , machineCount-1 po Jobs[jobId]->getRemainingTime() [list::sort] 
 
 			for(int i = 0; i < machineCount; i++) {
 				for(std::list<Task*>::iterator cur_task = MachineUsage[i].begin(); cur_task != MachineUsage[i].end(); ++cur_task) {
-					//std::cout << "[machine " << i << "] task job remaining time: " << Jobs[(*cur_task)->getJobId()]->getRemainingTime() << std::endl;
 					const short int job_dur = Jobs[(*cur_task)->getJobId()]->getJobDuration(),
 									task_start_time = std::max(StopTimes[(*cur_task)->getMachineId()], job_dur);
 					short int task_end_time = task_start_time + (*cur_task)->getDuration();
 
 					(*cur_task)->setStartTime(task_start_time);
-
-					//std::cout << "Current task at machine " << i << " starts at " <<  task_start_time << " and ends at " << task_end_time << std::endl;
 
 					StopTimes[(*cur_task)->getMachineId()] = task_end_time;
 					Jobs[(*cur_task)->getJobId()]->setDuration(task_end_time);
@@ -188,7 +173,6 @@ bool Scheduler::solveWithHeuristic(std::string fileName, short int jCount) {
 		out << max_scheduling_time << std::endl;
 		for(int i = 0; i < jCount; i++) {
 			for(int j = 0; j < taskCount; j++) {
-				//out << getJob(i)->getTask(j)->getStartTime() << " " << getJob(i)->getTask(j)->getStartTime()+getJob(i)->getTask(j)->getDuration() << " "; // output dla wykresów
 				out << getJob(i)->getTask(j)->getStartTime() << " ";
 			}
 			out << std::endl;
